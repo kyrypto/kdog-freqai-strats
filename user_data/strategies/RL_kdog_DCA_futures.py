@@ -16,7 +16,8 @@ logger = logging.getLogger(__name__)
 class RL_kdog_DCA_futures(IStrategy):
     """
 Here be stonks
-freqtrade trade --logfile ./logs --freqaimodel ReinforcementLearner_multiproc --strategy RL-kdog_DCA_futures
+1. freqtrade hyperopt --hyperopt-loss SharpeHyperOptLoss --strategy RL_kdog_DCA_futures --freqaimodel ReinforcementLearner --spaces sell roi --timerange "$(date --date='-1 month' '+%Y%m%d')"-"$(date '+%Y%m%d')" -e 1000
+2. freqtrade trade --logfile ./logs --freqaimodel ReinforcementLearner_multiproc --strategy RL_kdog_DCA_futures
     """
 
     minimal_roi = {"0": 0.1, "240": -1}
@@ -55,6 +56,9 @@ freqtrade trade --logfile ./logs --freqaimodel ReinforcementLearner_multiproc --
 
     linear_roi_offset = DecimalParameter(
         0.00, 0.02, default=0.005, space="sell", optimize=True, load=True
+    )
+    tp_target = DecimalParameter(
+        0.03, 0.25, default=0.05, step=0.01, space="sell", optimize=True, load=True
     )
     max_roi_time_long = IntParameter(0, 800, default=400, space="sell", optimize=True, load=True)
     # This is called when placing the initial order (opening trade)
@@ -99,7 +103,7 @@ freqtrade trade --logfile ./logs --freqaimodel ReinforcementLearner_multiproc --
                        Return None for no action.
         """
 
-        if current_profit > 0.05 and trade.nr_of_successful_exits == 0:
+        if current_profit > tp_target and trade.nr_of_successful_exits == 0:
             # Take tp_num of the profit at +5%
             return -(trade.stake_amount / tp_num)
 
