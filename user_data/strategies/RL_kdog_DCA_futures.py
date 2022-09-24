@@ -102,9 +102,9 @@ Here be stonks
                        Return None for no action.
         """
 
-        if current_profit > target_num and trade.nr_of_successful_exits == 0:
+        if current_profit > self.target_num.value and trade.nr_of_successful_exits == 0:
             # Take tp_num of the profit at +5%
-            return -(trade.stake_amount / tp_num)
+            return -(trade.stake_amount / self.tp_num.value)
 
         if current_profit > -0.05:
             return None
