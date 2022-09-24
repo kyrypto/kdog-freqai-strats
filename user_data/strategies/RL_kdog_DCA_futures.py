@@ -51,14 +51,13 @@ Here be stonks
     leverage_num = IntParameter(low=1, high=20, default=5, space='sell', optimize=leverage_optimize)
     tp_optimize = True
     tp_num = IntParameter(low=2, high=5, default=3, space='sell', optimize=tp_optimize)
+    tp_target = True
+    target_num = DecimalParameter(0.03, 0.25, default=0.05, space="sell", optimize=tp_target)
     # This number is explained a bit further down
     max_dca_multiplier = 5.5
 
     linear_roi_offset = DecimalParameter(
         0.00, 0.02, default=0.005, space="sell", optimize=True, load=True
-    )
-    tp_target = DecimalParameter(
-        0.03, 0.25, default=0.05, space="sell", optimize=True, load=True
     )
     max_roi_time_long = IntParameter(0, 800, default=400, space="sell", optimize=True, load=True)
     # This is called when placing the initial order (opening trade)
@@ -103,7 +102,7 @@ Here be stonks
                        Return None for no action.
         """
 
-        if current_profit > tp_target and trade.nr_of_successful_exits == 0:
+        if current_profit > target_num and trade.nr_of_successful_exits == 0:
             # Take tp_num of the profit at +5%
             return -(trade.stake_amount / tp_num)
 
