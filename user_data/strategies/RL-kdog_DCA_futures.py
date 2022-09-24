@@ -15,8 +15,7 @@ logger = logging.getLogger(__name__)
 
 class RL-kdog_DCA_futures(IStrategy):
     """
-    Test strategy - used for testing freqAI functionalities.
-    DO not use in production.
+Here be stonks
     """
 
     minimal_roi = {"0": 0.1, "240": -1}
