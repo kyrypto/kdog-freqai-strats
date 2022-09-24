@@ -16,6 +16,7 @@ logger = logging.getLogger(__name__)
 class RL-kdog_DCA_futures(IStrategy):
     """
 Here be stonks
+freqtrade trade --logfile ./logs --freqaimodel ReinforcementLearner_multiproc --strategy RL-kdog_DCA_futures
     """
 
     minimal_roi = {"0": 0.1, "240": -1}
