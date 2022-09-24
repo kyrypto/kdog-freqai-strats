@@ -16,8 +16,7 @@ logger = logging.getLogger(__name__)
 class RL_kdog_DCA_futures(IStrategy):
     """
 Here be stonks
-1. freqtrade hyperopt --hyperopt-loss SharpeHyperOptLoss --strategy RL_kdog_DCA_futures --freqaimodel ReinforcementLearner --spaces sell roi --timerange "$(date --date='-1 month' '+%Y%m%d')"-"$(date '+%Y%m%d')" -e 1000
-2. freqtrade trade --logfile ./logs --freqaimodel ReinforcementLearner_multiproc --strategy RL_kdog_DCA_futures
+freqtrade trade --logfile ./logs --freqaimodel ReinforcementLearner_multiproc --strategy RL-kdog_DCA_futures
     """
 
     minimal_roi = {"0": 0.1, "240": -1}
@@ -49,7 +48,8 @@ Here be stonks
     max_entry_position_adjustment = 3
     leverage_optimize = True
     leverage_num = IntParameter(low=1, high=20, default=5, space='sell', optimize=leverage_optimize)
-
+    tp_optimize = True
+    tp_num = IntParameter(low=2, high=5, default=3, space='sell', optimize=tp_optimize)
     # This number is explained a bit further down
     max_dca_multiplier = 5.5
 
@@ -100,8 +100,8 @@ Here be stonks
         """
 
         if current_profit > 0.05 and trade.nr_of_successful_exits == 0:
-            # Take half of the profit at +5%
-            return -(trade.stake_amount / 2)
+            # Take tp_num of the profit at +5%
+            return -(trade.stake_amount / tp_num)
 
         if current_profit > -0.05:
             return None
