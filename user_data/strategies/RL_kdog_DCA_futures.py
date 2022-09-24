@@ -58,7 +58,7 @@ Here be stonks
         0.00, 0.02, default=0.005, space="sell", optimize=True, load=True
     )
     tp_target = DecimalParameter(
-        0.03, 0.25, default=0.05, step=0.01, space="sell", optimize=True, load=True
+        0.03, 0.25, default=0.05, space="sell", optimize=True, load=True
     )
     max_roi_time_long = IntParameter(0, 800, default=400, space="sell", optimize=True, load=True)
     # This is called when placing the initial order (opening trade)
