@@ -53,9 +53,9 @@ class RL-kdog_DCA_futures(IStrategy):
     max_dca_multiplier = 5.5
 
     linear_roi_offset = DecimalParameter(
-        0.00, 0.02, default=0.005, space="sell", optimize=False, load=True
+        0.00, 0.02, default=0.005, space="sell", optimize=True, load=True
     )
-    max_roi_time_long = IntParameter(0, 800, default=400, space="sell", optimize=False, load=True)
+    max_roi_time_long = IntParameter(0, 800, default=400, space="sell", optimize=True, load=True)
     # This is called when placing the initial order (opening trade)
     def custom_stake_amount(self, pair: str, current_time: datetime, current_rate: float,
                             proposed_stake: float, min_stake: float, max_stake: float,
