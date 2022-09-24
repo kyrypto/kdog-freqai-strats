@@ -13,7 +13,7 @@ from freqtrade.strategy import CategoricalParameter, DecimalParameter, IntParame
 logger = logging.getLogger(__name__)
 
 
-class ReinforcementLearningExample5ac(IStrategy):
+class RL-kdog_DCA_futures(IStrategy):
     """
     Test strategy - used for testing freqAI functionalities.
     DO not use in production.
