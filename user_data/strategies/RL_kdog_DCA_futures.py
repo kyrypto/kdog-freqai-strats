@@ -46,13 +46,9 @@ Here be stonks
     position_adjustment_enable = True
 
     # Specific variables
-    max_entry_position_adjustment = 3
+    max_entry_position_adjustment = 2
     leverage_optimize = True
     leverage_num = IntParameter(low=1, high=20, default=5, space='sell', optimize=leverage_optimize)
-    tp_optimize = True
-    tp_num = IntParameter(low=2, high=5, default=3, space='sell', optimize=tp_optimize)
-    tp_target = True
-    target_num = DecimalParameter(0.03, 0.25, default=0.05, space="sell", optimize=tp_target)
     # This number is explained a bit further down
     max_dca_multiplier = 5.5
 
@@ -101,11 +97,6 @@ Here be stonks
                        Positive values to increase position, Negative values to decrease position.
                        Return None for no action.
         """
-
-        if current_profit > self.target_num.value and trade.nr_of_successful_exits == 0:
-            # Take tp_num of the profit at +5%
-            return -(trade.stake_amount / self.tp_num.value)
-
         if current_profit > -0.05:
             return None
 
