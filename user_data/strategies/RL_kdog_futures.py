@@ -43,8 +43,6 @@ Here be stonks
     use_exit_signal = True
     startup_candle_count: int = 300
     can_short = True
-    position_adjustment_enable = True
-
     # Specific variables
     leverage_optimize = True
     leverage_num = IntParameter(low=1, high=20, default=5, space='sell', optimize=leverage_optimize)
