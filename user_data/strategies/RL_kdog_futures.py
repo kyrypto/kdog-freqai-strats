@@ -46,17 +46,12 @@ Here be stonks
     position_adjustment_enable = True
 
     # Specific variables
-    max_entry_position_adjustment = 2
     leverage_optimize = True
     leverage_num = IntParameter(low=1, high=20, default=5, space='sell', optimize=leverage_optimize)
-    # This number is explained a bit further down
-    max_dca_multiplier = 5.5
-
     linear_roi_offset = DecimalParameter(
         0.00, 0.02, default=0.005, space="sell", optimize=True, load=True
     )
     max_roi_time_long = IntParameter(0, 800, default=400, space="sell", optimize=True, load=True)
-    # This is called when placing the initial order (opening trade)
     def leverage(self, pair: str, current_time: datetime, current_rate: float,
                  proposed_leverage: float, max_leverage: float, entry_tag: str, side: str,
                  **kwargs) -> float:
