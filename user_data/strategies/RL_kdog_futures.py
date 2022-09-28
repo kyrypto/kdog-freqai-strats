@@ -100,14 +100,6 @@ Here be stonks
         for t in self.freqai_info["feature_parameters"]["indicator_periods_candles"]:
 
             t = int(t)
-            # CDL2CROWS - Two Crows
-            informative[f"%-{coin}cdl2crows"] = ta.CDL2CROWS(informative)
-            # CDL3BLACKCROWS - Three Black Crows
-            informative[f"%-{coin}cdl3blackcrows"] = ta.CDL3BLACKCROWS(informative)
-            # CDL3INSIDE - Three Inside Up/Down
-            informative[f"%-{coin}cdl3inside"] = ta.CDL3INSIDE(informative)
-            # CDL3LINESTRIKE - Three-Line Strike
-            informative[f"%-{coin}cdl3inside"] = ta.CDL3INSIDE(informative)
             # DEMA - Double Exponential Moving Average
             informative[f"%-{coin}dema-period_{t}"] = ta.DEMA(informative, timeperiod=t)
             # HT_TRENDLINE - Hilbert Transform - Instantaneous Trendline
