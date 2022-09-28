@@ -101,19 +101,19 @@ Here be stonks
 
             t = int(t)
             # CDL2CROWS - Two Crows
-            informative[f"%-{coin}cdl2crows"] = ta.CDL2CROWS("close")
+            informative[f"%-{coin}cdl2crows"] = ta.CDL2CROWS(informative)
             # CDL3BLACKCROWS - Three Black Crows
-            informative[f"%-{coin}cdl3blackcrows"] = ta.CDL3BLACKCROWS("close")
+            informative[f"%-{coin}cdl3blackcrows"] = ta.CDL3BLACKCROWS(informative)
             # CDL3INSIDE - Three Inside Up/Down
-            informative[f"%-{coin}cdl3inside"] = ta.CDL3INSIDE("close")
+            informative[f"%-{coin}cdl3inside"] = ta.CDL3INSIDE(informative)
             # CDL3LINESTRIKE - Three-Line Strike
-            informative[f"%-{coin}cdl3inside"] = ta.CDL3INSIDE("close")
+            informative[f"%-{coin}cdl3inside"] = ta.CDL3INSIDE(informative)
             # MINMAX - Lowest and highest values over a specified period
             informative[f"%-{coin}minmax-period_{t}"] = ta.MINMAX(informative, timeperiod=t)
             # DEMA - Double Exponential Moving Average
             informative[f"%-{coin}dema-period_{t}"] = ta.DEMA(informative, timeperiod=t)
             # HT_TRENDLINE - Hilbert Transform - Instantaneous Trendline
-            informative[f"%-{coin}ht_trendline"] = ta.HT_TRENDLINE("close")
+            informative[f"%-{coin}ht_trendline"] = ta.HT_TRENDLINE(informative)
             # Linear Regression
             informative[f"%-{coin}linearreg-period_{t}"] = ta.LINEARREG(informative, timeperiod=t)
             # CORREL - Pearson's Correlation Coefficient (r)
