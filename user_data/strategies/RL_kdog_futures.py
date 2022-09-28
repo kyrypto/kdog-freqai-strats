@@ -108,8 +108,6 @@ Here be stonks
             informative[f"%-{coin}cdl3inside"] = ta.CDL3INSIDE(informative)
             # CDL3LINESTRIKE - Three-Line Strike
             informative[f"%-{coin}cdl3inside"] = ta.CDL3INSIDE(informative)
-            # MINMAX - Lowest and highest values over a specified period
-            informative[f"%-{coin}minmax-period_{t}"] = ta.MINMAX(informative, timeperiod=t)
             # DEMA - Double Exponential Moving Average
             informative[f"%-{coin}dema-period_{t}"] = ta.DEMA(informative, timeperiod=t)
             # HT_TRENDLINE - Hilbert Transform - Instantaneous Trendline
