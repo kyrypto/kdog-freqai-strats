@@ -45,7 +45,7 @@ Here be stonks
     can_short = True
     # Specific variables
     leverage_optimize = True
-    leverage_num = IntParameter(low=1, high=20, default=5, space='sell', optimize=leverage_optimize)
+    leverage_num = DecimalParameter(1, 20, default=5, decimals=2, space='sell', optimize=leverage_optimize)
     linear_roi_offset = DecimalParameter(
         0.00, 0.02, default=0.005, space="sell", optimize=True, load=True
     )
