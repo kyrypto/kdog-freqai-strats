@@ -100,12 +100,20 @@ Here be stonks
         for t in self.freqai_info["feature_parameters"]["indicator_periods_candles"]:
 
             t = int(t)
+            # CDL2CROWS - Two Crows
+            informative[f"%-{coin}cdl2crows"] = ta.CDL2CROWS("close")
+            # CDL3BLACKCROWS - Three Black Crows
+            informative[f"%-{coin}cdl3blackcrows"] = ta.CDL3BLACKCROWS("close")
+            # CDL3INSIDE - Three Inside Up/Down
+            informative[f"%-{coin}cdl3inside"] = ta.CDL3INSIDE("close")
+            # CDL3LINESTRIKE - Three-Line Strike
+            informative[f"%-{coin}cdl3inside"] = ta.CDL3INSIDE("close")
             # MINMAX - Lowest and highest values over a specified period
             informative[f"%-{coin}minmax-period_{t}"] = ta.MINMAX(informative, timeperiod=t)
             # DEMA - Double Exponential Moving Average
             informative[f"%-{coin}dema-period_{t}"] = ta.DEMA(informative, timeperiod=t)
             # HT_TRENDLINE - Hilbert Transform - Instantaneous Trendline
-            informative[f"%-{coin}ht_trendline-period_{t}"] = ta.HT_TRENDLINE(informative)
+            informative[f"%-{coin}ht_trendline"] = ta.HT_TRENDLINE("close")
             # Linear Regression
             informative[f"%-{coin}linearreg-period_{t}"] = ta.LINEARREG(informative, timeperiod=t)
             # CORREL - Pearson's Correlation Coefficient (r)
@@ -140,20 +148,20 @@ Here be stonks
             informative[f"%-{coin}tema-period_{t}"] = ta.TEMA(informative, timeperiod=t)
             # Stoch
             stoch = ta.STOCH(informative)
-            informative[f"%-{coin}slowd-period_{t}"] = stoch["slowd"]
-            informative[f"%-{coin}slowk-period_{t}"] = stoch["slowk"]
+            informative[f"%-{coin}slowd"] = stoch["slowd"]
+            informative[f"%-{coin}slowk"] = stoch["slowk"]
             # Stoch Fast
             stochf = ta.STOCHF(informative)
-            informative[f"%-{coin}fastd-period_{t}"] = stochf["fastd"]
-            informative[f"%-{coin}fastk-period_{t}"] = stochf["fastk"]
+            informative[f"%-{coin}fastd"] = stochf["fastd"]
+            informative[f"%-{coin}fastk"] = stochf["fastk"]
             # Stoch RSI
             stoch_rsi = ta.STOCHRSI(informative)
-            informative[f"%-{coin}fastd-period_{t}"] = stoch_rsi["fastd"]
-            informative[f"%-{coin}fastk-period_{t}"] = stoch_rsi["fastk"]
+            informative[f"%-{coin}fastd"] = stoch_rsi["fastd"]
+            informative[f"%-{coin}fastk"] = stoch_rsi["fastk"]
             # Hilbert
             hilbert = ta.HT_SINE(informative)
-            informative[f"%-{coin}htsine-period_{t}"] = hilbert["sine"]
-            informative[f"%-{coin}htleadsine-period_{t}"] = hilbert["leadsine"]
+            informative[f"%-{coin}htsine"] = hilbert["sine"]
+            informative[f"%-{coin}htleadsine"] = hilbert["leadsine"]
             # Bollinger bands
             bollinger = qtpylib.bollinger_bands(
                 qtpylib.typical_price(informative), window=t, stds=2.2
