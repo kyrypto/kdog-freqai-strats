@@ -101,13 +101,13 @@ Here be stonks
 
             t = int(t)
             # CDL2CROWS - Two Crows
-            informative[f"%-{coin}cdl2crows"] = ta.CDL2CROWS(open, high, low, close)
+            informative[f"%-{coin}cdl2crows"] = ta.CDL2CROWS("open", "high", "low", "close")
             # CDL3BLACKCROWS - Three Black Crows
-            informative[f"%-{coin}cdl3blackcrows"] = ta.CDL3BLACKCROWS(open, high, low, close)
+            informative[f"%-{coin}cdl3blackcrows"] = ta.CDL3BLACKCROWS("open", "high", "low", "close")
             # CDL3INSIDE - Three Inside Up/Down
-            informative[f"%-{coin}cdl3inside"] = ta.CDL3INSIDE(open, high, low, close)
+            informative[f"%-{coin}cdl3inside"] = ta.CDL3INSIDE("open", "high", "low", "close")
             # CDL3LINESTRIKE - Three-Line Strike
-            informative[f"%-{coin}cdl3inside"] = ta.CDL3INSIDE(open, high, low, close)
+            informative[f"%-{coin}cdl3inside"] = ta.CDL3INSIDE("open", "high", "low", "close")
             # DEMA - Double Exponential Moving Average
             informative[f"%-{coin}dema-period_{t}"] = ta.DEMA(informative, timeperiod=t)
             # HT_TRENDLINE - Hilbert Transform - Instantaneous Trendline
