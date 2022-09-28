@@ -100,6 +100,12 @@ Here be stonks
         for t in self.freqai_info["feature_parameters"]["indicator_periods_candles"]:
 
             t = int(t)
+            # MINMAX - Lowest and highest values over a specified period
+            informative[f"%-{coin}minmax-period_{t}"] = ta.MINMAX(informative, timeperiod=t)
+            # DEMA - Double Exponential Moving Average
+            informative[f"%-{coin}dema-period_{t}"] = ta.DEMA(informative, timeperiod=t)
+            # HT_TRENDLINE - Hilbert Transform - Instantaneous Trendline
+            informative[f"%-{coin}ht_trendline-period_{t}"] = ta.HT_TRENDLINE(informative)
             # Linear Regression
             informative[f"%-{coin}linearreg-period_{t}"] = ta.LINEARREG(informative, timeperiod=t)
             # CORREL - Pearson's Correlation Coefficient (r)
