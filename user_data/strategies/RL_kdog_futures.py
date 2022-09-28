@@ -100,6 +100,16 @@ Here be stonks
         for t in self.freqai_info["feature_parameters"]["indicator_periods_candles"]:
 
             t = int(t)
+            # Linear Regression
+            informative[f"%-{coin}linearreg-period_{t}"] = ta.LINEARREG(informative, timeperiod=t)
+            # CORREL - Pearson's Correlation Coefficient (r)
+            informative[f"%-{coin}correl-period_{t}"] = ta.CORREL(informative, timeperiod=t)
+            # STDDEV - Standard Deviation
+            informative[f"%-{coin}stddev-period_{t}"] = ta.STDDEV(informative, timeperiod=t)
+            # TSF - Time Series Forecast
+            informative[f"%-{coin}tsf-period_{t}"] = ta.TSF(informative, timeperiod=t)
+            # VAR - Variance
+            informative[f"%-{coin}var-period_{t}"] = ta.VAR(informative, timeperiod=t)
             # RSI
             informative[f"%-{coin}rsi-period_{t}"] = ta.RSI(informative, timeperiod=t)
             # Commodity Channel Index
