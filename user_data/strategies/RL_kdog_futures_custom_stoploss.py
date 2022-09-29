@@ -25,6 +25,10 @@ Here be stonks
     risk_reward_ratio: DecimalParameter(2, 10, default=3.5, decimals=1, space='sell', optimize=risk_reward_optimize)
     break_even_optimize = True
     set_to_break_even_at_profit: DecimalParameter(1, 10, default=1, decimals=1, space='sell', optimize=break_even_optimize)
+    custom_info = {
+        'risk_reward_ratio': risk_reward_ratio.value,
+        'set_to_break_even_at_profit': set_to_break_even_at_profit.value,
+    }
     use_custom_stoploss = True
     stoploss = -0.9
     minimal_roi = {"0": 0.1, "240": -1}
