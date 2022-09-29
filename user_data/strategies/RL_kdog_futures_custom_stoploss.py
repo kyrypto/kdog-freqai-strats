@@ -48,9 +48,9 @@ Here be stonks
     leverage_optimize = True
     leverage_num = DecimalParameter(1, 20, default=5, decimals=2, space='sell', optimize=leverage_optimize)
     time_stop_1 = DecimalParameter(-0.05, -0.15, default=-0.05, decimals=2, space='sell', optimize=True)
-    time_stop_2 = DecimalParameter(-0.15, -0.25, default=-0.05, decimals=2, space='sell', optimize=True)
-    time_stop_3 = DecimalParameter(-0.25, -0.35, default=-0.05, decimals=2, space='sell', optimize=True)
-    time_stop_4 = DecimalParameter(-0.35 -0.45, default=-0.05, decimals=2, space='sell', optimize=True)
+    time_stop_2 = DecimalParameter(-0.15, -0.25, default=-0.15, decimals=2, space='sell', optimize=True)
+    time_stop_3 = DecimalParameter(-0.25, -0.35, default=-0.25, decimals=2, space='sell', optimize=True)
+    time_stop_4 = DecimalParameter(-0.35 -0.45, default=-0.35, decimals=2, space='sell', optimize=True)
 
     linear_roi_offset = DecimalParameter(
         0.00, 0.02, default=0.005, space="sell", optimize=True, load=True
