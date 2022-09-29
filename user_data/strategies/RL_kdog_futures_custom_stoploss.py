@@ -39,7 +39,8 @@ Here be stonks
     }
 
     process_only_new_candles = True
-    stoploss = -0.3
+    stoploss = -1
+    use_custom_stoploss = True
     use_exit_signal = True
     startup_candle_count: int = 300
     can_short = True
