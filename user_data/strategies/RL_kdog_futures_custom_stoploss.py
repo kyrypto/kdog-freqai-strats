@@ -47,11 +47,29 @@ Here be stonks
     # Specific variables
     leverage_optimize = True
     leverage_num = DecimalParameter(1, 20, default=5, decimals=2, space='sell', optimize=leverage_optimize)
+    time_stop_1 = DecimalParameter(-0.05, -0.15, default=-0.05, decimals=2, space='sell', optimize=True)
+    time_stop_2 = DecimalParameter(-0.15, -0.25, default=-0.05, decimals=2, space='sell', optimize=True)
+    time_stop_3 = DecimalParameter(-0.25, -0.35, default=-0.05, decimals=2, space='sell', optimize=True)
+    time_stop_4 = DecimalParameter(-0.35 -0.45, default=-0.05, decimals=2, space='sell', optimize=True)
+
     linear_roi_offset = DecimalParameter(
         0.00, 0.02, default=0.005, space="sell", optimize=True, load=True
     )
     max_roi_time_long = IntParameter(0, 800, default=400, space="sell", optimize=True, load=True)
         # This is called when placing the initial order (opening trade)
+    def custom_stoploss(self, pair: str, trade: 'Trade', current_time: datetime,
+                        current_rate: float, current_profit: float, **kwargs) -> float:
+
+        # Make sure you have the longest interval first - these conditions are evaluated from top to bottom.
+        if current_time - timedelta(minutes=60) > trade.open_date:
+            return self.time_stop_1.value
+        elif current_time - timedelta(minutes=30) > trade.open_date:
+            return self.time_stop_2.value
+        elif current_time - timedelta(minutes=15) > trade.open_date:
+            return self.time_stop_3.value
+        elif current_time - timedelta(minutes=0) > trade.open_date:
+            return self.time_stop_4.value
+        return 1
     def leverage(self, pair: str, current_time: datetime, current_rate: float,
                  proposed_leverage: float, max_leverage: float, entry_tag: str, side: str,
                  **kwargs) -> float:
