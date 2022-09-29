@@ -1,6 +1,7 @@
 import logging
 from functools import reduce
 from datetime import datetime
+import numpy as np  # noqa
 import pandas as pd
 import talib.abstract as ta
 from pandas import DataFrame
@@ -13,7 +14,7 @@ from freqtrade.strategy import CategoricalParameter, DecimalParameter, IntParame
 logger = logging.getLogger(__name__)
 
 
-class RL_kdog_futures(IStrategy):
+class RL_kdog_futures_custom_stoploss(IStrategy):
     """
 Here be stonks
 1. freqtrade hyperopt --hyperopt-loss SharpeHyperOptLoss --strategy RL_kdog_DCA_futures --freqaimodel ReinforcementLearner --spaces sell roi --timerange "$(date --date='-1 month' '+%Y%m%d')"-"$(date '+%Y%m%d')" -e 1000
