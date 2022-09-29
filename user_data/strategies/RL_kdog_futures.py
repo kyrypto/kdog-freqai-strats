@@ -99,6 +99,9 @@ Here be stonks
             informative[f"%-{coin}ht_trendline"] = ta.HT_TRENDLINE(informative)
             # Linear Regression
             informative[f"%-{coin}linearreg-period_{t}"] = ta.LINEARREG(informative, timeperiod=t)
+            informative[f"%-{coin}linearreg_angle-period_{t}"] = ta.LINEARREG_ANGLE(informative, timeperiod=t)
+            informative[f"%-{coin}linearreg_intercept-period_{t}"] = ta.LINEARREG_INTERCEPT(informative, timeperiod=t)
+            informative[f"%-{coin}linearreg_slope-period_{t}"] = ta.LINEARREG_SLOPE(informative, timeperiod=t)
             # CORREL - Pearson's Correlation Coefficient (r)
             informative[f"%-{coin}correl-period_{t}"] = ta.CORREL(informative, timeperiod=t)
             # STDDEV - Standard Deviation
