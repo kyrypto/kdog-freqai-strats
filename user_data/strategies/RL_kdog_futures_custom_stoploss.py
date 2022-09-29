@@ -87,7 +87,7 @@ Here be stonks
             # calculate take profit treshold
             # by using the initial risk and multiplying it
             risk_distance = trade.open_rate-initial_sl_abs
-            reward_distance = risk_distance*self.risk_reward_ratio.value
+            reward_distance = risk_distance*self.custom_info['risk_reward_ratio']
             # take_profit tries to lock in profit once price gets over
             # risk/reward ratio treshold
             take_profit_price_abs = trade.open_rate+reward_distance
@@ -96,7 +96,7 @@ Here be stonks
 
             # break_even tries to set sl at open_rate+fees (0 loss)
             # break_even gets triggerd at this profit
-            break_even_profit_distance = risk_distance*self.set_to_break_even_at_profit.value
+            break_even_profit_distance = risk_distance*self.custom_info['set_to_break_even_at_profit']
             break_even_profit_pct = (break_even_profit_distance+current_rate)/current_rate-1
 
             result = initial_sl
