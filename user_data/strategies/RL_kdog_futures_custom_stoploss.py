@@ -20,7 +20,16 @@ Here be stonks
 1. freqtrade hyperopt --hyperopt-loss SharpeHyperOptLoss --strategy RL_kdog_DCA_futures --freqaimodel ReinforcementLearner --spaces sell roi --timerange "$(date --date='-1 month' '+%Y%m%d')"-"$(date '+%Y%m%d')" -e 1000
 2. freqtrade trade --logfile ./logs --freqaimodel ReinforcementLearner_multiproc --strategy RL_kdog_DCA_futures
     """
+    INTERFACE_VERSION: int = 3
+    risk_reward_optimize = True
+    break_even_optimize = True
 
+    custom_info = {
+        'risk_reward_ratio': DecimalParameter(2, 10, default=3.5, decimals=1, space='sell', optimize=risk_reward_optimize),
+        'set_to_break_even_at_profit': DecimalParameter(1, 10, default=1, decimals=1, space='sell', optimize=break_even_optimize,
+    }
+    use_custom_stoploss = True
+    stoploss = -0.9
     minimal_roi = {"0": 0.1, "240": -1}
 
     plot_config = {
@@ -40,7 +49,6 @@ Here be stonks
     }
 
     process_only_new_candles = True
-    stoploss = -0.3
     use_exit_signal = True
     startup_candle_count: int = 300
     can_short = True
