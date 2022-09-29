@@ -51,13 +51,6 @@ Here be stonks
     )
     max_roi_time_long = IntParameter(0, 800, default=400, space="sell", optimize=True, load=True)
         # This is called when placing the initial order (opening trade)
-    def custom_stake_amount(self, pair: str, current_time: datetime, current_rate: float,
-                            proposed_stake: float, min_stake: float, max_stake: float,
-                            leverage: float, entry_tag: str, side: str,
-                            **kwargs) -> float:
-
-        # Multiply stake amount by the leverage value (futures only)
-        return proposed_stake * self.leverage_num.value
     def leverage(self, pair: str, current_time: datetime, current_rate: float,
                  proposed_leverage: float, max_leverage: float, entry_tag: str, side: str,
                  **kwargs) -> float:
