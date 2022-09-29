@@ -17,8 +17,8 @@ logger = logging.getLogger(__name__)
 class RL_kdog_futures_custom_stoploss(IStrategy):
     """
 Here be stonks
-1. freqtrade hyperopt --hyperopt-loss SharpeHyperOptLoss --strategy RL_kdog_DCA_futures --freqaimodel ReinforcementLearner --spaces sell roi --timerange "$(date --date='-1 month' '+%Y%m%d')"-"$(date '+%Y%m%d')" -e 1000
-2. freqtrade trade --logfile ./logs --freqaimodel ReinforcementLearner_multiproc --strategy RL_kdog_DCA_futures
+1. freqtrade hyperopt --hyperopt-loss SharpeHyperOptLoss --strategy RL_kdog_futures_custom_stoploss --freqaimodel ReinforcementLearner --spaces sell roi --timerange "$(date --date='-1 week' '+%Y%m%d')"-"$(date '+%Y%m%d')" -e 1000
+2. freqtrade trade --logfile ./logs --freqaimodel ReinforcementLearner_multiproc --strategy RL_kdog_futures_custom_stoploss
     """
     INTERFACE_VERSION: int = 3
     risk_reward_optimize = True
