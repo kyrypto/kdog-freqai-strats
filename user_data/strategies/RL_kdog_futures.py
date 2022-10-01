@@ -93,20 +93,20 @@ Here be stonks
         for t in self.freqai_info["feature_parameters"]["indicator_periods_candles"]:
             t = int(t)
             # MIN - Lowest value over a specified period
-            informative[f"%-{coin}min-period_{t}"] = ta.MIN(informative, timeperiod=t)
+            # informative[f"%-{coin}min-period_{t}"] = ta.MIN(informative, timeperiod=t)
             # MAX - Highest value over a specified period
-            informative[f"%-{coin}max-period_{t}"] = ta.MAX(informative, timeperiod=t)
+            # informative[f"%-{coin}max-period_{t}"] = ta.MAX(informative, timeperiod=t)
             # DEMA - Double Exponential Moving Average
-            # informative[f"%-{coin}dema-period_{t}"] = ta.DEMA(informative, timeperiod=t)
+            informative[f"%-{coin}dema-period_{t}"] = ta.DEMA(informative, timeperiod=t)
             # Linear Regression
             informative[f"%-{coin}linearreg-period_{t}"] = ta.LINEARREG(informative, timeperiod=t)
             informative[f"%-{coin}linearreg_angle-period_{t}"] = ta.LINEARREG_ANGLE(informative, timeperiod=t)
             informative[f"%-{coin}linearreg_intercept-period_{t}"] = ta.LINEARREG_INTERCEPT(informative, timeperiod=t)
             informative[f"%-{coin}linearreg_slope-period_{t}"] = ta.LINEARREG_SLOPE(informative, timeperiod=t)
             # CORREL - Pearson's Correlation Coefficient (r)
-            # informative[f"%-{coin}correl-period_{t}"] = ta.CORREL(informative, timeperiod=t)
+            informative[f"%-{coin}correl-period_{t}"] = ta.CORREL(informative, timeperiod=t)
             # STDDEV - Standard Deviation
-            # informative[f"%-{coin}stddev-period_{t}"] = ta.STDDEV(informative, timeperiod=t)
+            informative[f"%-{coin}stddev-period_{t}"] = ta.STDDEV(informative, timeperiod=t)
             # TSF - Time Series Forecast
             informative[f"%-{coin}tsf-period_{t}"] = ta.TSF(informative, timeperiod=t)
             # VAR - Variance
@@ -116,7 +116,7 @@ Here be stonks
             # RSI
             informative[f"%-{coin}rsi-period_{t}"] = ta.RSI(informative, timeperiod=t)
             # Commodity Channel Index
-            # informative[f"%-{coin}cci-period_{t}"] = ta.CCI(informative, timeperiod=t)
+            informative[f"%-{coin}cci-period_{t}"] = ta.CCI(informative, timeperiod=t)
             # Minus Directional Indicator / Movement
             informative[f"%-{coin}minus_di-period_{t}"] = ta.MINUS_DI(informative, timeperiod=t)
             informative[f"%-{coin}minus_dm-period_{t}"] = ta.MINUS_DM(informative, timeperiod=t)
@@ -138,7 +138,7 @@ Here be stonks
             # EMA
             informative[f"%-{coin}ema-period_{t}"] = ta.EMA(informative, timeperiod=t)
             # TEMA
-            # informative[f"%-{coin}tema-period_{t}"] = ta.TEMA(informative, timeperiod=t)
+            informative[f"%-{coin}tema-period_{t}"] = ta.TEMA(informative, timeperiod=t)
             # ATR - Average True Range
             informative[f"%-{coin}atr-period_{t}"] = ta.ATR(informative, timeperiod=t)
             # Stoch
