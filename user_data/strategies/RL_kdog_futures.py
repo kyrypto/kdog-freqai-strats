@@ -104,9 +104,9 @@ Here be stonks
             informative[f"%-{coin}linearreg_intercept-period_{t}"] = ta.LINEARREG_INTERCEPT(informative, timeperiod=t)
             informative[f"%-{coin}linearreg_slope-period_{t}"] = ta.LINEARREG_SLOPE(informative, timeperiod=t)
             # CORREL - Pearson's Correlation Coefficient (r)
-            informative[f"%-{coin}correl-period_{t}"] = ta.CORREL(informative, timeperiod=t)
+            # informative[f"%-{coin}correl-period_{t}"] = ta.CORREL(informative, timeperiod=t)
             # STDDEV - Standard Deviation
-            informative[f"%-{coin}stddev-period_{t}"] = ta.STDDEV(informative, timeperiod=t)
+            # informative[f"%-{coin}stddev-period_{t}"] = ta.STDDEV(informative, timeperiod=t)
             # TSF - Time Series Forecast
             informative[f"%-{coin}tsf-period_{t}"] = ta.TSF(informative, timeperiod=t)
             # VAR - Variance
@@ -128,7 +128,7 @@ Here be stonks
             # ADX
             informative[f"%-{coin}adx-period_{t}"] = ta.ADX(informative, window=t)
             # TRIX - 1-day Rate-Of-Change (ROC) of a Triple Smooth EMA
-            informative[f"%-{coin}trix-period_{t}"] = ta.TRIX(informative, timeperiod=t)
+            # informative[f"%-{coin}trix-period_{t}"] = ta.TRIX(informative, timeperiod=t)
             # WILLR - Williams' %R
             informative[f"%-{coin}willr-period_{t}"] = ta.WILLR(informative, timeperiod=t)
             # Kaufman's Adaptive Moving Average (KAMA)
@@ -138,7 +138,7 @@ Here be stonks
             # EMA
             informative[f"%-{coin}ema-period_{t}"] = ta.EMA(informative, timeperiod=t)
             # TEMA
-            informative[f"%-{coin}tema-period_{t}"] = ta.TEMA(informative, timeperiod=t)
+            # informative[f"%-{coin}tema-period_{t}"] = ta.TEMA(informative, timeperiod=t)
             # ATR - Average True Range
             informative[f"%-{coin}atr-period_{t}"] = ta.ATR(informative, timeperiod=t)
             # Stoch
