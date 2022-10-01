@@ -110,6 +110,8 @@ Here be stonks
             informative[f"%-{coin}tsf-period_{t}"] = ta.TSF(informative, timeperiod=t)
             # VAR - Variance
             informative[f"%-{coin}var-period_{t}"] = ta.VAR(informative, timeperiod=t)
+            # Momentum
+            informative[f"%-{coin}mom-period_{t}"] = ta.MOM(informative, timeperiod=t)
             # RSI
             informative[f"%-{coin}rsi-period_{t}"] = ta.RSI(informative, timeperiod=t)
             # Commodity Channel Index
@@ -124,6 +126,10 @@ Here be stonks
             informative[f"%-{coin}mfi-period_{t}"] = ta.MFI(informative, timeperiod=t)
             # ADX
             informative[f"%-{coin}adx-period_{t}"] = ta.ADX(informative, window=t)
+            # TRIX - 1-day Rate-Of-Change (ROC) of a Triple Smooth EMA
+            informative[f"%-{coin}trix-period_{t}"] = ta.TRIX(informative, timeperiod=t)
+            # WILLR - Williams' %R
+            informative[f"%-{coin}willr-period_{t}"] = ta.WILLR(informative, timeperiod=t)
             # Kaufman's Adaptive Moving Average (KAMA)
             informative[f"%-{coin}kama-period_{t}"] = ta.KAMA(informative, window=t)
             # SMA
