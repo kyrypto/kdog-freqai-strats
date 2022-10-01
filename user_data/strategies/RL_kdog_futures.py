@@ -138,6 +138,8 @@ Here be stonks
             informative[f"%-{coin}ema-period_{t}"] = ta.EMA(informative, timeperiod=t)
             # TEMA
             informative[f"%-{coin}tema-period_{t}"] = ta.TEMA(informative, timeperiod=t)
+            # ATR - Average True Range
+            informative[f"%-{coin}atr-period_{t}"] = ta.ATR(informative, timeperiod=t)
             # Stoch
             stoch = ta.STOCH(informative)
             informative[f"%-{coin}slowd"] = stoch["slowd"]
