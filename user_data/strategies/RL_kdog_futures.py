@@ -91,12 +91,13 @@ Here be stonks
 
         # first loop is automatically duplicating indicators for time periods
         for t in self.freqai_info["feature_parameters"]["indicator_periods_candles"]:
-
             t = int(t)
+            # MIN - Lowest value over a specified period
+            informative[f"%-{coin}min-period_{t}"] = ta.MIN(informative, timeperiod=t)
+            # MAX - Highest value over a specified period
+            informative[f"%-{coin}max-period_{t}"] = ta.MAX(informative, timeperiod=t)
             # DEMA - Double Exponential Moving Average
             informative[f"%-{coin}dema-period_{t}"] = ta.DEMA(informative, timeperiod=t)
-            # HT_TRENDLINE - Hilbert Transform - Instantaneous Trendline
-            informative[f"%-{coin}ht_trendline"] = ta.HT_TRENDLINE(informative)
             # Linear Regression
             informative[f"%-{coin}linearreg-period_{t}"] = ta.LINEARREG(informative, timeperiod=t)
             informative[f"%-{coin}linearreg_angle-period_{t}"] = ta.LINEARREG_ANGLE(informative, timeperiod=t)
