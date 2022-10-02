@@ -102,7 +102,7 @@ Here be stonks
         rate: float,
         time_in_force: str,
         current_time: datetime,
-        entry_tag str,
+        entry_tag: str,
         side: str,
         **kwargs
     ) -> bool:
