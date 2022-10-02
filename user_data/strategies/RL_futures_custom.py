@@ -37,7 +37,7 @@ Here be stonks
             },
         },
     }
-    max_entry_position_adjustment = IntParameter(0, 5, default=1, space="sell", optimize=True, load=True)
+    max_entry_position_adjustment = 5
     max_dca_multiplier = 10
     process_only_new_candles = True
     stoploss = -0.3
