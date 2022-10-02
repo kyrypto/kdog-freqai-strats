@@ -21,7 +21,7 @@ Here be stonks
 2. freqtrade trade --logfile ./logs --freqaimodel ReinforcementLearner_multiproc --strategy RL_kdog_futures
     """
 
-    minimal_roi = {"0": 0.2, "5000": -1}
+    minimal_roi = {"0": 0.5, "5000": -1}
 
     plot_config = {
         "main_plot": {},
@@ -39,7 +39,7 @@ Here be stonks
         },
     }
     position_adjustment_enable = True
-    stoploss = -0.1
+    stoploss = -0.25
     max_entry_position_adjustment = 5
     max_dca_multiplier = 10
     process_only_new_candles = True
