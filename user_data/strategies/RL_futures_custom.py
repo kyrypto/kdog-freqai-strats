@@ -1,5 +1,6 @@
 import logging
 from functools import reduce
+from datetime import timedelta
 from datetime import datetime
 import pandas as pd
 import talib.abstract as ta
