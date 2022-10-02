@@ -58,7 +58,7 @@ Here be stonks
             },
         ]
     position_adjustment_enable = True
-    stoploss = -1
+    stoploss = -0.1
     max_entry_position_adjustment = 5
     max_dca_multiplier = 10
     process_only_new_candles = True
