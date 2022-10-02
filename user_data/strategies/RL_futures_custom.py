@@ -38,6 +38,25 @@ Here be stonks
             },
         },
     }
+    @property
+    def protections(self):
+        return [
+            {"method": "CooldownPeriod", "stop_duration_candles": 4},
+            {
+                "method": "MaxDrawdown",
+                "lookback_period_candles": 48,
+                "trade_limit": 20,
+                "stop_duration_candles": 4,
+                "max_allowed_drawdown": 0.2,
+            },
+            {
+                "method": "StoplossGuard",
+                "lookback_period_candles": 200,
+                "trade_limit": 4,
+                "stop_duration_candles": 100,
+                "only_per_pair": False,
+            },
+        ]
     position_adjustment_enable = True
     stoploss = -1
     max_entry_position_adjustment = 5
