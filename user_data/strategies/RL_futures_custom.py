@@ -57,7 +57,7 @@ Here be stonks
 
         # We need to leave most of the funds for possible further DCA orders
         # This also applies to fixed stakes
-        return proposed_stake / self.self.max_dca_multiplier
+        return proposed_stake / self.max_dca_multiplier
     
     def adjust_trade_position(self, trade: Trade, current_time: datetime,
                               current_rate: float, current_profit: float, min_stake: float,
