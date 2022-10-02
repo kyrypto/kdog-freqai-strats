@@ -72,46 +72,6 @@ Here be stonks
         0.00, 0.02, default=0.005, space="sell", optimize=False, load=True
     )
     max_roi_time_long = IntParameter(0, 800, default=400, space="sell", optimize=False, load=True)
-    def custom_exit(
-        self,
-        pair: str,
-        trade: Trade,
-        current_time: datetime,
-        current_rate: float,
-        current_profit: float,
-        **kwargs
-    ):
-
-        dataframe, _ = self.dp.get_analyzed_dataframe(pair=pair, timeframe=self.timeframe)
-
-        last_candle = dataframe.iloc[-1].squeeze()
-        trade_date = timeframe_to_prev_date(
-            self.timeframe, (trade.open_date_utc - timedelta(minutes=int(self.timeframe[:-1])))
-        )
-        trade_candle = dataframe.loc[(dataframe["date"] == trade_date)]
-        trade_df = dataframe.loc[(dataframe["date"] > trade_date)]
-        if trade_candle.empty:
-            return None
-        trade_candle = trade_candle.squeeze()
-        entry_tag = trade.enter_tag
-
-        if trade_df['&-action'].sum() > 0 and entry_tag == 'enter_long':
-            return '&-action_missed'
-
-        if trade_df['&-action'].sum() > 0 and entry_tag == 'enter_short':
-            return '&-action_missed'
-
-        if last_candle["do_predict"] <= -1:
-            return "Outlier detected  (do_predict = -1)"
-
-        if current_profit < -0.07:
-            return "stop_loss"
-
-        if last_candle['&-action'] == 1 and entry_tag == 'enter_short':
-            return "&-action_detected_short"
-
-        if last_candle['&-action'] == 1 and entry_tag == 'enter_long':
-            return "&-action_detected_long"
 
     def custom_stake_amount(self, pair: str, current_time: datetime, current_rate: float,
                             proposed_stake: float, min_stake: float, max_stake: float,
