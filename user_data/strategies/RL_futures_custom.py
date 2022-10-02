@@ -13,7 +13,7 @@ from freqtrade.strategy import CategoricalParameter, DecimalParameter, IntParame
 logger = logging.getLogger(__name__)
 
 
-class RL_kdog_futures(IStrategy):
+class RL_futures_custom(IStrategy):
     """
 Here be stonks
 1. freqtrade hyperopt --hyperopt-loss SharpeHyperOptLoss --strategy RL_kdog_futures --freqaimodel ReinforcementLearner --spaces sell roi stoploss --timerange "$(date --date='-1 week' '+%Y%m%d')"-"$(date '+%Y%m%d')" -e 1000
