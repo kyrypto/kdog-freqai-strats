@@ -126,7 +126,9 @@ Here be stonks
         side: str,
         **kwargs
     ) -> bool:
-
+        is_backtest = self.dp.runmode.value == 'backtest'
+        if (trade.open_date_utc.replace(tzinfo=None) < datetime(2022, 4, 6) and not is_backtest):
+            return None
         open_trades = Trade.get_trades(trade_filter=Trade.is_open.is_(True))
 
         num_shorts, num_longs = 0, 0
