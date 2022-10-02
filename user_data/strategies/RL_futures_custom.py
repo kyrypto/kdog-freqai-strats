@@ -37,10 +37,11 @@ Here be stonks
             },
         },
     }
+    position_adjustment_enable = True
+    stoploss = -1
     max_entry_position_adjustment = 5
     max_dca_multiplier = 10
     process_only_new_candles = True
-    stoploss = -0.3
     use_exit_signal = True
     startup_candle_count: int = 300
     can_short = True
@@ -51,6 +52,87 @@ Here be stonks
         0.00, 0.02, default=0.005, space="sell", optimize=False, load=True
     )
     max_roi_time_long = IntParameter(0, 800, default=400, space="sell", optimize=False, load=True)
+    def custom_exit(
+        self,
+        pair: str,
+        trade: Trade,
+        current_time: datetime,
+        current_rate: float,
+        current_profit: float,
+        **kwargs
+    ):
+
+        dataframe, _ = self.dp.get_analyzed_dataframe(pair=pair, timeframe=self.timeframe)
+
+        last_candle = dataframe.iloc[-1].squeeze()
+        trade_date = timeframe_to_prev_date(
+            self.timeframe, (trade.open_date_utc - timedelta(minutes=int(self.timeframe[:-1])))
+        )
+        trade_candle = dataframe.loc[(dataframe["date"] == trade_date)]
+        trade_df = dataframe.loc[(dataframe["date"] > trade_date)]
+        if trade_candle.empty:
+            return None
+        trade_candle = trade_candle.squeeze()
+        entry_tag = trade.enter_tag
+
+        if trade_df['&-action'].sum() > 0 and entry_tag == 'enter_long':
+            return '&-action_missed'
+
+        if trade_df['&-action'].sum() > 0 and entry_tag == 'enter_short':
+            return '&-action_missed'
+
+        if last_candle["doPredict"] <= -1:
+            return "Outlier detected  (do_predict = -1)"
+
+        if current_profit < -0.07:
+            return "stop_loss"
+
+        if last_candle['&-action'] == 1 and entry_tag == 'enter_short':
+            return "&-action_detected_short"
+
+        if last_candle['&-action'] == 1 and entry_tag == 'enter_long':
+            return "&-action_detected_long"
+
+
+    def confirm_trade_entry(
+        self,
+        pair: str,
+        order_type: str,
+        amount: float,
+        rate: float,
+        time_in_force: str,
+        current_time: datetime,
+        entry_tag str,
+        side: str,
+        **kwargs
+    ) -> bool:
+
+        open_trades = Trade.get_trades(trade_filter=Trade.is_open.is_(True))
+
+        num_shorts, num_longs = 0, 0
+        for trade in open_trades:
+            if trade.enter_tag == 'short':
+                num_shorts += 1
+            elif trade.enter_tag == 'long':
+                num_longs += 1
+
+        if side == "long" and num_longs >= 4:
+            return False
+
+        if side == "short" and num_shorts >= 4:
+            return False
+
+        df, _ = self.dp.get_analyzed_dataframe(pair, self.timeframe)
+        last_candle = df.iloc[-1].squeeze()
+
+        if side == "long":
+            if rate > (last_candle["close"] * (1 + 0.0025)):
+                return False
+        else:
+            if rate < (last_candle["close"] * (1 - 0.0025)):
+                return False
+
+        return True
     def custom_stake_amount(self, pair: str, current_time: datetime, current_rate: float,
                             proposed_stake: float, min_stake: float, max_stake: float,
                             entry_tag: str, **kwargs) -> float:
