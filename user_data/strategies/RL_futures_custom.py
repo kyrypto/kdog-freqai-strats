@@ -38,25 +38,6 @@ Here be stonks
             },
         },
     }
-    @property
-    def protections(self):
-        return [
-            {"method": "CooldownPeriod", "stop_duration_candles": 4},
-            {
-                "method": "MaxDrawdown",
-                "lookback_period_candles": 48,
-                "trade_limit": 20,
-                "stop_duration_candles": 4,
-                "max_allowed_drawdown": 0.2,
-            },
-            {
-                "method": "StoplossGuard",
-                "lookback_period_candles": 200,
-                "trade_limit": 4,
-                "stop_duration_candles": 100,
-                "only_per_pair": False,
-            },
-        ]
     position_adjustment_enable = True
     stoploss = -0.1
     max_entry_position_adjustment = 5
@@ -67,7 +48,7 @@ Here be stonks
     can_short = True
     # Specific variables
     leverage_optimize = True
-    leverage_num = DecimalParameter(1, 20, default=5, decimals=2, space='sell', optimize=leverage_optimize)
+    leverage_num = DecimalParameter(2, 20, default=3, decimals=2, space='sell', optimize=leverage_optimize)
     linear_roi_offset = DecimalParameter(
         0.00, 0.02, default=0.005, space="sell", optimize=False, load=True
     )
