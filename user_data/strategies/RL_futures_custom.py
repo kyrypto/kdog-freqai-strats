@@ -21,7 +21,7 @@ Here be stonks
 2. freqtrade trade --logfile ./logs --freqaimodel ReinforcementLearner_multiproc --strategy RL_kdog_futures
     """
 
-    minimal_roi = {"0": 0.1, "240": -1}
+    minimal_roi = {"0": 0.075, "5000": -1}
 
     plot_config = {
         "main_plot": {},
