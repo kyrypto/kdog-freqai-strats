@@ -5,6 +5,7 @@ import pandas as pd
 import talib.abstract as ta
 from pandas import DataFrame
 from technical import qtpylib
+from datetime import datetime
 from freqtrade.persistence import Trade
 
 from freqtrade.strategy import CategoricalParameter, DecimalParameter, IntParameter, IStrategy, merge_informative_pair
@@ -37,9 +38,9 @@ Here be stonks
             },
         },
     }
-
+    use_custom_stoploss = True
+    stoploss = -0.9
     process_only_new_candles = True
-    stoploss = -0.3
     use_exit_signal = True
     startup_candle_count: int = 300
     can_short = True
