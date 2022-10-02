@@ -6,7 +6,7 @@ import talib.abstract as ta
 from pandas import DataFrame
 from technical import qtpylib
 from freqtrade.persistence import Trade
-
+from freqtrade.exchange import timeframe_to_prev_date
 from freqtrade.strategy import CategoricalParameter, DecimalParameter, IntParameter, IStrategy, merge_informative_pair
 
 
