@@ -113,46 +113,6 @@ Here be stonks
         if last_candle['&-action'] == 1 and entry_tag == 'enter_long':
             return "&-action_detected_long"
 
-
-    def confirm_trade_entry(
-        self,
-        pair: str,
-        order_type: str,
-        amount: float,
-        rate: float,
-        time_in_force: str,
-        current_time: datetime,
-        entry_tag: str,
-        side: str,
-        **kwargs
-    ) -> bool:
-        is_backtest = self.dp.runmode.value == 'backtest'
-        if not is_backtest:
-            open_trades = Trade.get_trades(trade_filter=Trade.is_open.is_(True))
-        num_shorts, num_longs = 0, 0
-        for trade in open_trades:
-            if trade.enter_tag == 'short':
-                num_shorts += 1
-            elif trade.enter_tag == 'long':
-                num_longs += 1
-
-        if side == "long" and num_longs >= 4:
-            return False
-
-        if side == "short" and num_shorts >= 4:
-            return False
-
-        df, _ = self.dp.get_analyzed_dataframe(pair, self.timeframe)
-        last_candle = df.iloc[-1].squeeze()
-
-        if side == "long":
-            if rate > (last_candle["close"] * (1 + 0.0025)):
-                return False
-        else:
-            if rate < (last_candle["close"] * (1 - 0.0025)):
-                return False
-
-        return True
     def custom_stake_amount(self, pair: str, current_time: datetime, current_rate: float,
                             proposed_stake: float, min_stake: float, max_stake: float,
                             entry_tag: str, **kwargs) -> float:
