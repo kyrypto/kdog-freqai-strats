@@ -37,7 +37,7 @@ Here be stonks
             },
         },
     }
-
+    max_entry_position_adjustment = IntParameter(0, 5, default=1, space="sell", optimize=True, load=True)
     process_only_new_candles = True
     stoploss = -0.3
     use_exit_signal = True
@@ -50,6 +50,55 @@ Here be stonks
         0.00, 0.02, default=0.005, space="sell", optimize=False, load=True
     )
     max_roi_time_long = IntParameter(0, 800, default=400, space="sell", optimize=False, load=True)
+    def custom_stake_amount(self, pair: str, current_time: datetime, current_rate: float,
+                            proposed_stake: float, min_stake: float, max_stake: float,
+                            entry_tag: Optional[str], **kwargs) -> float:
+
+        # We need to leave most of the funds for possible further DCA orders
+        # This also applies to fixed stakes
+        return proposed_stake / self.max_entry_position_adjustment.value
+
+    def adjust_trade_position(self, trade: Trade, current_time: datetime,
+                              current_rate: float, current_profit: float, min_stake: float,
+                              max_stake: float, **kwargs):
+        """
+        Custom trade adjustment logic, returning the stake amount that a trade should be increased.
+        This means extra buy orders with additional fees.
+
+        :param trade: trade object.
+        :param current_time: datetime object, containing the current datetime
+        :param current_rate: Current buy rate.
+        :param current_profit: Current profit (as ratio), calculated based on current_rate.
+        :param min_stake: Minimal stake size allowed by exchange.
+        :param max_stake: Balance available for trading.
+        :param **kwargs: Ensure to keep this here so updates to this won't break your strategy.
+        :return float: Stake amount to adjust your trade
+        """
+
+        if current_profit > -0.03:
+            return None
+
+        dataframe, _ = self.dp.get_analyzed_dataframe(trade.pair, self.timeframe)
+        last_candle = dataframe.iloc[-1].squeeze()
+        previous_candle = dataframe.iloc[-2].squeeze()
+        entry_tag = trade.enter_tag
+
+        filled_buys = trade.select_filled_orders()
+        count_of_buys = trade.nr_of_successful_entries
+
+        try:
+            stake_amount = filled_buys[0].cost
+            stake_amount = stake_amount * (1 + (count_of_buys * 0.25))
+
+            if (last_candle["&-action"] or previous_candle["&-action"]) and entry_tag == 'enter_long':
+                return stake_amount
+            if (last_candle["&-action"] or previous_candle["&-action"]) and entry_tag == 'enter_short':
+                return stake_amount
+
+        except Exception as exception:
+            logger.warning(f"{exception}")
+
+        return None
         # This is called when placing the initial order (opening trade)
     def leverage(self, pair: str, current_time: datetime, current_rate: float,
                  proposed_leverage: float, max_leverage: float, entry_tag: str, side: str,
