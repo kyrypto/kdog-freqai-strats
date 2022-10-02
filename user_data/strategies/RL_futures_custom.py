@@ -38,6 +38,7 @@ Here be stonks
         },
     }
     max_entry_position_adjustment = IntParameter(0, 5, default=1, space="sell", optimize=True, load=True)
+    max_dca_multiplier = 10
     process_only_new_candles = True
     stoploss = -0.3
     use_exit_signal = True
@@ -56,8 +57,8 @@ Here be stonks
 
         # We need to leave most of the funds for possible further DCA orders
         # This also applies to fixed stakes
-        return proposed_stake / self.max_entry_position_adjustment.value
-
+        return proposed_stake / self.self.max_dca_multiplier
+    
     def adjust_trade_position(self, trade: Trade, current_time: datetime,
                               current_rate: float, current_profit: float, min_stake: float,
                               max_stake: float, **kwargs):
