@@ -82,7 +82,7 @@ Here be stonks
         if trade_df['&-action'].sum() > 0 and entry_tag == 'enter_short':
             return '&-action_missed'
 
-        if last_candle["doPredict"] <= -1:
+        if last_candle["do_predict"] <= -1:
             return "Outlier detected  (do_predict = -1)"
 
         if current_profit < -0.07:
