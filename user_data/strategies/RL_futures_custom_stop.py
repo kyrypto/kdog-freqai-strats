@@ -38,6 +38,11 @@ Here be stonks
             },
         },
     }
+    INTERFACE_VERSION: int = 3
+    custom_info = {
+        'risk_reward_ratio': 3.5,
+        'set_to_break_even_at_profit': 1,
+    }
     use_custom_stoploss = True
     stoploss = -0.9
     process_only_new_candles = True
