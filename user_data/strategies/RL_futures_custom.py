@@ -279,14 +279,14 @@ Here be stonks
 
         if enter_long_conditions:
             df.loc[
-                reduce(lambda x, y: x & y, enter_long_conditions), ["enter_long", "enter_tag"]
+                reduce(lambda x, y: x & y, enter_long_conditions), ["enter_long", "Optional"]
             ] = (1, "long")
 
         enter_short_conditions = [df["do_predict"] == 1, df["&-action"] == 3]
 
         if enter_short_conditions:
             df.loc[
-                reduce(lambda x, y: x & y, enter_short_conditions), ["enter_short", "enter_tag"]
+                reduce(lambda x, y: x & y, enter_short_conditions), ["enter_short", "Optional"]
             ] = (1, "short")
 
         return df
