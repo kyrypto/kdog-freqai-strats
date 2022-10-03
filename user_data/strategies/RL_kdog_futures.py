@@ -97,12 +97,12 @@ Here be stonks
             # MAX - Highest value over a specified period
             # informative[f"%-{coin}max-period_{t}"] = ta.MAX(informative, timeperiod=t)
             # DEMA - Double Exponential Moving Average
-            informative[f"%-{coin}dema-period_{t}"] = ta.DEMA(informative, timeperiod=t)
+            # informative[f"%-{coin}dema-period_{t}"] = ta.DEMA(informative, timeperiod=t)
             # Linear Regression
-            informative[f"%-{coin}linearreg-period_{t}"] = ta.LINEARREG(informative, timeperiod=t)
-            informative[f"%-{coin}linearreg_angle-period_{t}"] = ta.LINEARREG_ANGLE(informative, timeperiod=t)
-            informative[f"%-{coin}linearreg_intercept-period_{t}"] = ta.LINEARREG_INTERCEPT(informative, timeperiod=t)
-            informative[f"%-{coin}linearreg_slope-period_{t}"] = ta.LINEARREG_SLOPE(informative, timeperiod=t)
+            # informative[f"%-{coin}linearreg-period_{t}"] = ta.LINEARREG(informative, timeperiod=t)
+            # informative[f"%-{coin}linearreg_angle-period_{t}"] = ta.LINEARREG_ANGLE(informative, timeperiod=t)
+            # informative[f"%-{coin}linearreg_intercept-period_{t}"] = ta.LINEARREG_INTERCEPT(informative, timeperiod=t)
+            # informative[f"%-{coin}linearreg_slope-period_{t}"] = ta.LINEARREG_SLOPE(informative, timeperiod=t)
             # CORREL - Pearson's Correlation Coefficient (r)
             # informative[f"%-{coin}correl-period_{t}"] = ta.CORREL(informative, timeperiod=t)
             # STDDEV - Standard Deviation
@@ -110,19 +110,19 @@ Here be stonks
             # TSF - Time Series Forecast
             informative[f"%-{coin}tsf-period_{t}"] = ta.TSF(informative, timeperiod=t)
             # VAR - Variance
-            informative[f"%-{coin}var-period_{t}"] = ta.VAR(informative, timeperiod=t)
+            # informative[f"%-{coin}var-period_{t}"] = ta.VAR(informative, timeperiod=t)
             # Momentum
             informative[f"%-{coin}mom-period_{t}"] = ta.MOM(informative, timeperiod=t)
             # RSI
             informative[f"%-{coin}rsi-period_{t}"] = ta.RSI(informative, timeperiod=t)
             # Commodity Channel Index
-            informative[f"%-{coin}cci-period_{t}"] = ta.CCI(informative, timeperiod=t)
+            # informative[f"%-{coin}cci-period_{t}"] = ta.CCI(informative, timeperiod=t)
             # Minus Directional Indicator / Movement
-            informative[f"%-{coin}minus_di-period_{t}"] = ta.MINUS_DI(informative, timeperiod=t)
-            informative[f"%-{coin}minus_dm-period_{t}"] = ta.MINUS_DM(informative, timeperiod=t)
+            # informative[f"%-{coin}minus_di-period_{t}"] = ta.MINUS_DI(informative, timeperiod=t)
+            # informative[f"%-{coin}minus_dm-period_{t}"] = ta.MINUS_DM(informative, timeperiod=t)
             # Plus Directional Indicator / Movement
-            informative[f"%-{coin}plus_di-period_{t}"] = ta.PLUS_DI(informative, timeperiod=t)
-            informative[f"%-{coin}plus_dm-period_{t}"] = ta.PLUS_DM(informative, timeperiod=t)
+            # informative[f"%-{coin}plus_di-period_{t}"] = ta.PLUS_DI(informative, timeperiod=t)
+            # informative[f"%-{coin}plus_dm-period_{t}"] = ta.PLUS_DM(informative, timeperiod=t)
             # MFI
             informative[f"%-{coin}mfi-period_{t}"] = ta.MFI(informative, timeperiod=t)
             # ADX
@@ -154,24 +154,24 @@ Here be stonks
             informative[f"%-{coin}fastd"] = stoch_rsi["fastd"]
             informative[f"%-{coin}fastk"] = stoch_rsi["fastk"]
             # Hilbert
-            hilbert = ta.HT_SINE(informative)
-            informative[f"%-{coin}htsine"] = hilbert["sine"]
-            informative[f"%-{coin}htleadsine"] = hilbert["leadsine"]
+            # hilbert = ta.HT_SINE(informative)
+            # informative[f"%-{coin}htsine"] = hilbert["sine"]
+            # informative[f"%-{coin}htleadsine"] = hilbert["leadsine"]
             # Bollinger bands
-            bollinger = qtpylib.bollinger_bands(
-                qtpylib.typical_price(informative), window=t, stds=2.2
-            )
-            informative[f"{coin}bb_lowerband-period_{t}"] = bollinger["lower"]
-            informative[f"{coin}bb_middleband-period_{t}"] = bollinger["mid"]
-            informative[f"{coin}bb_upperband-period_{t}"] = bollinger["upper"]
+            # bollinger = qtpylib.bollinger_bands(
+                # qtpylib.typical_price(informative), window=t, stds=2.2
+            # )
+            # informative[f"{coin}bb_lowerband-period_{t}"] = bollinger["lower"]
+            # informative[f"{coin}bb_middleband-period_{t}"] = bollinger["mid"]
+            # informative[f"{coin}bb_upperband-period_{t}"] = bollinger["upper"]
 
-            informative[f"%-{coin}bb_width-period_{t}"] = (
-                informative[f"{coin}bb_upperband-period_{t}"]
-                - informative[f"{coin}bb_lowerband-period_{t}"]
-            ) / informative[f"{coin}bb_middleband-period_{t}"]
-            informative[f"%-{coin}close-bb_lower-period_{t}"] = (
-                informative["close"] / informative[f"{coin}bb_lowerband-period_{t}"]
-            )
+            # informative[f"%-{coin}bb_width-period_{t}"] = (
+                # informative[f"{coin}bb_upperband-period_{t}"]
+                # - informative[f"{coin}bb_lowerband-period_{t}"]
+            # ) / informative[f"{coin}bb_middleband-period_{t}"]
+            # informative[f"%-{coin}close-bb_lower-period_{t}"] = (
+                # informative["close"] / informative[f"{coin}bb_lowerband-period_{t}"]
+            # )
 
             informative[f"%-{coin}roc-period_{t}"] = ta.ROC(informative, timeperiod=t)
 
