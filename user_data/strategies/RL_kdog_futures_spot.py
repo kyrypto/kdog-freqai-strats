@@ -42,31 +42,13 @@ Here be stonks
     stoploss = -0.3
     use_exit_signal = True
     startup_candle_count: int = 300
-    can_short = True
+    can_short = False
     # Specific variables
-    leverage_optimize = True
-    leverage_num = DecimalParameter(1, 20, default=5, decimals=2, space='sell', optimize=leverage_optimize)
     linear_roi_offset = DecimalParameter(
         0.00, 0.02, default=0.005, space="sell", optimize=False, load=True
     )
     max_roi_time_long = IntParameter(0, 800, default=400, space="sell", optimize=False, load=True)
         # This is called when placing the initial order (opening trade)
-    def leverage(self, pair: str, current_time: datetime, current_rate: float,
-                 proposed_leverage: float, max_leverage: float, entry_tag: str, side: str,
-                 **kwargs) -> float:
-        """
-        Customize leverage for each new trade. This method is only called in futures mode.
-
-        :param pair: Pair that's currently analyzed
-        :param current_time: datetime object, containing the current datetime
-        :param current_rate: Rate, calculated based on pricing settings in exit_pricing.
-        :param proposed_leverage: A leverage proposed by the bot.
-        :param max_leverage: Max leverage allowed on this pair
-        :param entry_tag: Optional entry_tag (buy_tag) if provided with the buy signal.
-        :param side: 'long' or 'short' - indicating the direction of the proposed trade
-        :return: A leverage amount, which is between 1.0 and max_leverage.
-        """
-        return self.leverage_num.value
     def informative_pairs(self):
         whitelist_pairs = self.dp.current_whitelist()
         corr_pairs = self.config["freqai"]["feature_parameters"]["include_corr_pairlist"]
