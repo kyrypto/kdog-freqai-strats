@@ -130,9 +130,9 @@ Here be stonks
             # TRIX - 1-day Rate-Of-Change (ROC) of a Triple Smooth EMA
             # informative[f"%-{coin}trix-period_{t}"] = ta.TRIX(informative, timeperiod=t)
             # WILLR - Williams' %R
-            informative[f"%-{coin}willr-period_{t}"] = ta.WILLR(informative, timeperiod=t)
+            # informative[f"%-{coin}willr-period_{t}"] = ta.WILLR(informative, timeperiod=t)
             # Kaufman's Adaptive Moving Average (KAMA)
-            informative[f"%-{coin}kama-period_{t}"] = ta.KAMA(informative, window=t)
+            # informative[f"%-{coin}kama-period_{t}"] = ta.KAMA(informative, window=t)
             # SMA
             informative[f"%-{coin}sma-period_{t}"] = ta.SMA(informative, timeperiod=t)
             # EMA
@@ -142,13 +142,13 @@ Here be stonks
             # ATR - Average True Range
             informative[f"%-{coin}atr-period_{t}"] = ta.ATR(informative, timeperiod=t)
             # Stoch
-            stoch = ta.STOCH(informative)
-            informative[f"%-{coin}slowd"] = stoch["slowd"]
-            informative[f"%-{coin}slowk"] = stoch["slowk"]
+            # stoch = ta.STOCH(informative)
+            # informative[f"%-{coin}slowd"] = stoch["slowd"]
+            # informative[f"%-{coin}slowk"] = stoch["slowk"]
             # Stoch Fast
-            stochf = ta.STOCHF(informative)
-            informative[f"%-{coin}fastd"] = stochf["fastd"]
-            informative[f"%-{coin}fastk"] = stochf["fastk"]
+            # stochf = ta.STOCHF(informative)
+            # informative[f"%-{coin}fastd"] = stochf["fastd"]
+            # informative[f"%-{coin}fastk"] = stochf["fastk"]
             # Stoch RSI
             stoch_rsi = ta.STOCHRSI(informative)
             informative[f"%-{coin}fastd"] = stoch_rsi["fastd"]
