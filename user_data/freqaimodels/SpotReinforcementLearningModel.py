@@ -306,14 +306,14 @@ class SpotReinforcementLearningModel(IFreqaiModel):
             """
             # first, penalize if the action is not valid
             if not self._is_valid(action):
-                return -2
+                return -5
 
             pnl = self.get_unrealized_profit()
             rew = np.sign(pnl) * (pnl + 1)
             factor = 100.
 
             # reward agent for entering trades
-            if (action == (Actions.Long_enter.value)
+            if (action in (Actions.Long_enter.value, Actions.Long_enter_1.value, Actions.Long_enter_2.value)
                     and self._position == Positions.Neutral):
                 return 25
             # discourage agent from not entering trades

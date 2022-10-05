@@ -91,9 +91,6 @@ class Base5ActionRLEnvSpot(BaseEnvironment):
 
             Action: Long, position: Neutral -> Open Long
             Action: Long, position: Short -> Close Short and Open Long
-
-            Action: Short, position: Neutral -> Open Short
-            Action: Short, position: Long -> Close Long and Open Short
             """
 
             if action == Actions.Neutral.value:
@@ -171,6 +168,8 @@ class Base5ActionRLEnvSpot(BaseEnvironment):
         """
         return not ((action == Actions.Neutral.value and self._position == Positions.Neutral) or
                     (action == Actions.Neutral.value and self._position == Positions.Long) or
+                    (action == Actions.Long_enter_1.value and self._position == Positions.Neutral) or
+                    (action == Actions.Long_enter_2.value and self._position == Positions.Neutral) or
                     (action == Actions.Long_enter.value and self._position == Positions.Long) or
                     (action == Actions.Long_exit.value and self._position == Positions.Neutral))
 
