@@ -1,0 +1,154 @@
+{
+    "trading_mode": "spot",
+    "new_pairs_days": 30,
+    //"margin_mode": "isolated",
+    "max_open_trades": -1,
+    "stake_currency": "USD",
+    "stake_amount": 250,
+    "tradable_balance_ratio": 0.99,
+    "fiat_display_currency": "USD",
+    "dry_run": true,
+    "timeframe": "5m",
+    "dataformat_ohlcv": "json",
+    "dry_run_wallet": 1000,
+    "cancel_open_orders_on_exit": true,
+    "unfilledtimeout": {
+        "entry": 10,
+        "exit": 30
+    },
+    "exchange": {
+        "name": "ftxus",
+        "key": "",
+        "secret": "",
+        "ccxt_config": {},
+        "ccxt_async_config": {
+            //"enableRateLimit": true,
+            //"rateLimit": 100
+         },
+
+        "pair_whitelist": [
+            "SOL/USD",
+            "LINK/USD",
+            "MATIC/USD",
+            "AVAX/USD",
+        ],
+        "pair_blacklist": []
+    },
+    "entry_pricing": {
+        "price_side": "other",
+        "use_order_book": true,
+        "order_book_top": 1,
+        "price_last_balance": 0.0,
+        "check_depth_of_market": {
+            "enabled": false,
+            "bids_to_ask_delta": 1
+        }
+    },
+    "exit_pricing": {
+        "price_side": "other",
+        "use_order_book": true,
+        "order_book_top": 1
+    },
+    "pairlists": [
+        {
+            "method": "StaticPairList"
+        }
+    ],
+    "freqai": {
+        "enabled": true,
+        "model_save_type": "stable_baselines",
+        "conv_width": 2,
+        "purge_old_models": true,
+        "train_period_days": 28,
+        "backtest_period_days": 7,
+        "identifier": "multi_proc_ftxus",
+        "data_kitchen_thread_count": 4,
+        "feature_parameters": {
+            "include_corr_pairlist": [
+                "BTC/USDT",
+                "ETH/USDT"
+            ],
+            "include_timeframes": [
+		"5m",
+		"15m",
+		"1h",
+                "4h"
+            ],
+            "include_shifted_candles": 3,
+            "indicator_max_period_candles": 50,
+            "indicator_periods_candles": [5, 10, 20],
+            "reverse_train_test_order": true
+        },
+        "data_split_parameters": {
+            "test_size": 0.5,
+            "random_state": 1,
+            "shuffle": false
+        },
+        "model_training_parameters": {
+            "n_epochs": 5,
+            "gamma": 0.9,
+            "verbose": 1
+        },
+        "rl_config": {
+            "train_cycles": 6,
+            "max_trade_duration_candles": 300,
+            "max_training_drawdown_pct": 0.02,
+            "thread_count": 4,
+            "model_type": "PPO",
+            "policy_type": "MlpPolicy",
+            "continual_learning": false,
+            "model_reward_parameters": {
+                "rr": 1,
+                "profit_aim": 0.025
+            }
+        }
+    },
+        "api_server": {
+        "enabled": false,
+        "listen_ip_address": "127.0.0.1",
+        "listen_port": 8080,
+        "verbosity": "error",
+        "enable_openapi": false,
+        "jwt_secret_key": "SomethingRandom",
+        "CORS_origins": [],
+        //"ws_token": ""
+        "username": "freqtrader",
+        "password": "SuperSecretPassword"
+    },
+    "telegram": {
+        "enabled": false,
+        "token": "",
+        "chat_id": "",
+        "notification_settings": {
+            "status": "on",
+            "warning": "on",
+            "startup": "on",
+            "entry": "on",
+            "entry_fill": "on",
+            "exit": {
+                "roi": "off",
+                "emergency_exit": "off",
+                "force_exit": "off",
+                "exit_signal": "off",
+                "trailing_stop_loss": "off",
+                "stop_loss": "off",
+                "stoploss_on_exchange": "off",
+                "custom_exit": "off"
+            },
+            "exit_fill": "on",
+            "entry_cancel": "on",
+            "exit_cancel": "on",
+            "protection_trigger": "off",
+            "protection_trigger_global": "on",
+            "show_candle": "off"
+        },
+        "reload": true,
+        "balance_dust_level": 0.01
+    },
+    "bot_name": "RL_kdog",
+    "force_entry_enable": true,
+    "initial_state": "running",
+    "internals": {
+        "process_throttle_secs": 5
+    }
+}
