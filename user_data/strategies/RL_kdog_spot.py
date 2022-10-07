@@ -253,20 +253,32 @@ Here be stonks
 
         #if current_profit > -0.01:
             #return None
-        enter_long_1_conditions = {"do_predict" == 1 and "&-action" == 2}
-        enter_long_2_conditions = {"do_predict" == 1 and "&-action" == 3}
+        # Don't rebuy for trades on hold
+        is_backtest = self.dp.runmode.value == 'backtest'
+        if (trade.open_date_utc.replace(tzinfo=None) < datetime(2022, 4, 6) and not is_backtest):
+            return None
         dataframe, _ = self.dp.get_analyzed_dataframe(trade.pair, self.timeframe)
-        entry_tag = trade.enter_tag
+        if(len(dataframe) < 2):
+            return None
+        last_candle = dataframe.iloc[-1].squeeze()
+        previous_candle = dataframe.iloc[-2].squeeze()
 
         filled_buys = trade.select_filled_orders()
         count_of_buys = trade.nr_of_successful_entries
         try:
             stake_amount = filled_buys[0].cost
             stake_amount = stake_amount * (1 + (count_of_buys * 0.25))
-
-            if enter_long_1_conditions and count_of_buys == 1:
+            if (
+                    (last_candle['do_predict'] == 1)
+                    and (last_candle['&-action'] == 2)
+                    and count_of_buys == 1
+            ):
                 return stake_amount
-            if enter_long_2_conditions and count_of_buys == 2:
+            if (
+                    (last_candle['do_predict'] == 1)
+                    and (last_candle['&-action'] == 3)
+                    and count_of_buys == 2
+            ):
                 return stake_amount
 
         except Exception as exception:
