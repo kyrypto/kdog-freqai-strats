@@ -259,15 +259,14 @@ Here be stonks
         entry_tag = trade.enter_tag
 
         filled_buys = trade.select_filled_orders()
-        count_of_buys = trade.nr_of_successful_entries
-
+        filled_entries = trade.select_filled_orders(trade.entry_side)
         try:
             stake_amount = filled_buys[0].cost
             stake_amount = stake_amount * (1 + (count_of_buys * 0.25))
 
-            if enter_long_1_conditions and count_of_buys == 1:
+            if enter_long_1_conditions and filled_entries == 1:
                 return stake_amount
-            if enter_long_2_conditions and count_of_buys == 2:
+            if enter_long_2_conditions and filled_entries == 2:
                 return stake_amount
 
         except Exception as exception:
