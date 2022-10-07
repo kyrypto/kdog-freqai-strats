@@ -259,6 +259,7 @@ Here be stonks
         entry_tag = trade.enter_tag
 
         filled_buys = trade.select_filled_orders()
+        count_of_buys = trade.nr_of_successful_entries
         filled_entries = trade.select_filled_orders(trade.entry_side)
         try:
             stake_amount = filled_buys[0].cost
