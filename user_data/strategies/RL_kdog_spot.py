@@ -251,8 +251,8 @@ Here be stonks
         :return float: Stake amount to adjust your trade
         """
 
-        if current_profit > -0.01:
-            return None
+        #if current_profit > -0.01:
+            #return None
         enter_long_1_conditions = {"do_predict" == 1 and "&-action" == 2}
         enter_long_2_conditions = {"do_predict" == 1 and "&-action" == 3}
         dataframe, _ = self.dp.get_analyzed_dataframe(trade.pair, self.timeframe)
