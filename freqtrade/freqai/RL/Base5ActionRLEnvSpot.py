@@ -46,13 +46,11 @@ class Base5ActionRLEnvSpot(BaseEnvironment):
         self._current_tick = self._start_tick
         self._last_trade_tick = None
         self._position = Positions.Neutral
-
         self.total_reward = 0.
         self._total_profit = 1.  # unit
         self.history = {}
         self.trade_history = []
         self.portfolio_log_returns = np.zeros(len(self.prices))
-
         self._profits = [(self._start_tick, 1)]
         self.close_trade_profit = []
         self._total_unrealized_profit = 1
@@ -73,7 +71,6 @@ class Base5ActionRLEnvSpot(BaseEnvironment):
         """
         self._done = False
         self._current_tick += 1
-
         if self._current_tick == self._end_tick:
             self._done = True
 
@@ -100,18 +97,22 @@ class Base5ActionRLEnvSpot(BaseEnvironment):
             elif action == Actions.Long_enter.value:
                 self._position = Positions.Long
                 trade_type = "long"
+                self.position_count = 1
                 self._last_trade_tick = self._current_tick
             elif action == Actions.Long_enter_1.value:
                 self._position = Positions.Long
                 trade_type = "long"
+                self.position_count = 2
                 self._last_trade_tick = self._current_tick
             elif action == Actions.Long_enter_2.value:
                 self._position = Positions.Long
                 trade_type = "long"
+                self.position_count = 3
                 self._last_trade_tick = self._current_tick
             elif action == Actions.Long_exit.value:
                 self._update_total_profit()
                 self._position = Positions.Neutral
+                self.position_count = 0
                 trade_type = "neutral"
                 self._last_trade_tick = None
             else:
@@ -132,7 +133,7 @@ class Base5ActionRLEnvSpot(BaseEnvironment):
             tick=self._current_tick,
             total_reward=self.total_reward,
             total_profit=self._total_profit,
-            position=self._position.value
+            position=self._position.value,
         )
 
         observation = self._get_observation()
@@ -193,5 +194,10 @@ class Base5ActionRLEnvSpot(BaseEnvironment):
         if action in (Actions.Long_enter_1.value, Actions.Long_enter_2.value):
             if self._position != Positions.Long:
                 return False
-
+        if action == (Actions.Long_enter_1.value):
+            if self.position_count != 1:
+                return False
+        if action == (Actions.Long_enter_2.value):
+            if self.position_count != 2:
+                return False
         return True
