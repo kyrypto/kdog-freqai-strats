@@ -171,6 +171,9 @@ class Base5ActionRLEnvSpot(BaseEnvironment):
                     (action == Actions.Neutral.value and self._position == Positions.Long) or
                     (action == Actions.Long_enter_1.value and self._position == Positions.Neutral) or
                     (action == Actions.Long_enter_2.value and self._position == Positions.Neutral) or
+                    (action == Actions.Long_enter_1.value and self.position_count >= 2) or
+                    (action == Actions.Long_enter_2.value and self.position_count == 1) or
+                    (action == Actions.Long_enter_2.value and self.position_count >= 3) or
                     (action == Actions.Long_enter.value and self._position == Positions.Long) or
                     (action == Actions.Long_exit.value and self._position == Positions.Neutral))
 
