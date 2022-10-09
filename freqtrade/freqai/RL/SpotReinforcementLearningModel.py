@@ -318,10 +318,12 @@ class SpotReinforcementLearningModel(IFreqaiModel):
                 return 25
             # reward agent for re-entering trades
             if (action == (Actions.Long_enter_1.value)
-                    and self._position == Positions.Long):
+                    and self._position == Positions.Long
+                    and self.position_count == 1):
                 return 5
             if (action == (Actions.Long_enter_2.value)
-                    and self._position == Positions.Long):
+                    and self._position == Positions.Long
+                    and self.position_count == 2):
                 return 5
             # discourage agent from not entering trades
             if action == Actions.Neutral.value and self._position == Positions.Neutral:
@@ -342,7 +344,10 @@ class SpotReinforcementLearningModel(IFreqaiModel):
             if (self._position == (Positions.Long) and
                action == Actions.Neutral.value):
                 return -1 * trade_duration / max_trade_duration
-
+            # discourage agent from holding maximum position
+            if (self._position == Positions.Long
+                    and self.position_count == 3):
+                return -1 * trade_duration / max_trade_duration
             # close long
             if action == Actions.Long_exit.value and self._position == Positions.Long:
                 if pnl > self.profit_aim * self.rr:
