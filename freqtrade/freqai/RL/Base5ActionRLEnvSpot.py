@@ -47,6 +47,7 @@ class Base5ActionRLEnvSpot(BaseEnvironment):
         self._last_trade_tick = None
         self._position = Positions.Neutral
         self.total_reward = 0.
+        self.position_count = 0.
         self._total_profit = 1.  # unit
         self.history = {}
         self.trade_history = []
