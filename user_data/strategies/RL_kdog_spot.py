@@ -78,9 +78,9 @@ Here be stonks
         for t in self.freqai_info["feature_parameters"]["indicator_periods_candles"]:
             t = int(t)
             # MIN - Lowest value over a specified period
-            # informative[f"%-{coin}min-period_{t}"] = ta.MIN(informative, timeperiod=t)
+            informative[f"%-{coin}min-period_{t}"] = ta.MIN(informative, timeperiod=t)
             # MAX - Highest value over a specified period
-            # informative[f"%-{coin}max-period_{t}"] = ta.MAX(informative, timeperiod=t)
+            informative[f"%-{coin}max-period_{t}"] = ta.MAX(informative, timeperiod=t)
             # DEMA - Double Exponential Moving Average
             # informative[f"%-{coin}dema-period_{t}"] = ta.DEMA(informative, timeperiod=t)
             # Linear Regression
@@ -91,15 +91,15 @@ Here be stonks
             # CORREL - Pearson's Correlation Coefficient (r)
             informative[f"%-{coin}correl-period_{t}"] = ta.CORREL(informative, timeperiod=t)
             # STDDEV - Standard Deviation
-            # informative[f"%-{coin}stddev-period_{t}"] = ta.STDDEV(informative, timeperiod=t)
+            informative[f"%-{coin}stddev-period_{t}"] = ta.STDDEV(informative, timeperiod=t)
             # TSF - Time Series Forecast
             informative[f"%-{coin}tsf-period_{t}"] = ta.TSF(informative, timeperiod=t)
             # VAR - Variance
-            # informative[f"%-{coin}var-period_{t}"] = ta.VAR(informative, timeperiod=t)
+            informative[f"%-{coin}var-period_{t}"] = ta.VAR(informative, timeperiod=t)
             # Momentum
-            # informative[f"%-{coin}mom-period_{t}"] = ta.MOM(informative, timeperiod=t)
+            informative[f"%-{coin}mom-period_{t}"] = ta.MOM(informative, timeperiod=t)
             # RSI
-            # informative[f"%-{coin}rsi-period_{t}"] = ta.RSI(informative, timeperiod=t)
+            informative[f"%-{coin}rsi-period_{t}"] = ta.RSI(informative, timeperiod=t)
             # Commodity Channel Index
             informative[f"%-{coin}cci-period_{t}"] = ta.CCI(informative, timeperiod=t)
             # Minus Directional Indicator / Movement
@@ -113,15 +113,15 @@ Here be stonks
             # ADX
             informative[f"%-{coin}adx-period_{t}"] = ta.ADX(informative, window=t)
             # TRIX - 1-day Rate-Of-Change (ROC) of a Triple Smooth EMA
-            # informative[f"%-{coin}trix-period_{t}"] = ta.TRIX(informative, timeperiod=t)
+            informative[f"%-{coin}trix-period_{t}"] = ta.TRIX(informative, timeperiod=t)
             # WILLR - Williams' %R
             informative[f"%-{coin}willr-period_{t}"] = ta.WILLR(informative, timeperiod=t)
             # Kaufman's Adaptive Moving Average (KAMA)
-            # informative[f"%-{coin}kama-period_{t}"] = ta.KAMA(informative, window=t)
+            informative[f"%-{coin}kama-period_{t}"] = ta.KAMA(informative, window=t)
             # SMA
-            # informative[f"%-{coin}sma-period_{t}"] = ta.SMA(informative, timeperiod=t)
+            informative[f"%-{coin}sma-period_{t}"] = ta.SMA(informative, timeperiod=t)
             # EMA
-            # informative[f"%-{coin}ema-period_{t}"] = ta.EMA(informative, timeperiod=t)
+            informative[f"%-{coin}ema-period_{t}"] = ta.EMA(informative, timeperiod=t)
             # TEMA
             # informative[f"%-{coin}tema-period_{t}"] = ta.TEMA(informative, timeperiod=t)
             # ATR - Average True Range
