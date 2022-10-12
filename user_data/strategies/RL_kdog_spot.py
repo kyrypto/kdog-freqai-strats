@@ -89,47 +89,47 @@ Here be stonks
             # informative[f"%-{coin}linearreg_intercept-period_{t}"] = ta.LINEARREG_INTERCEPT(informative, timeperiod=t)
             # informative[f"%-{coin}linearreg_slope-period_{t}"] = ta.LINEARREG_SLOPE(informative, timeperiod=t)
             # CORREL - Pearson's Correlation Coefficient (r)
-            informative[f"%-{coin}correl-period_{t}"] = ta.CORREL(informative, timeperiod=t)
+            # informative[f"%-{coin}correl-period_{t}"] = ta.CORREL(informative, timeperiod=t)
             # STDDEV - Standard Deviation
-            informative[f"%-{coin}stddev-period_{t}"] = ta.STDDEV(informative, timeperiod=t)
+            # informative[f"%-{coin}stddev-period_{t}"] = ta.STDDEV(informative, timeperiod=t)
             # TSF - Time Series Forecast
-            informative[f"%-{coin}tsf-period_{t}"] = ta.TSF(informative, timeperiod=t)
+            # informative[f"%-{coin}tsf-period_{t}"] = ta.TSF(informative, timeperiod=t)
             # VAR - Variance
-            informative[f"%-{coin}var-period_{t}"] = ta.VAR(informative, timeperiod=t)
+            # informative[f"%-{coin}var-period_{t}"] = ta.VAR(informative, timeperiod=t)
             # Momentum
-            informative[f"%-{coin}mom-period_{t}"] = ta.MOM(informative, timeperiod=t)
+            # informative[f"%-{coin}mom-period_{t}"] = ta.MOM(informative, timeperiod=t)
             # RSI
-            informative[f"%-{coin}rsi-period_{t}"] = ta.RSI(informative, timeperiod=t)
+            # informative[f"%-{coin}rsi-period_{t}"] = ta.RSI(informative, timeperiod=t)
             # Commodity Channel Index
-            informative[f"%-{coin}cci-period_{t}"] = ta.CCI(informative, timeperiod=t)
+            # informative[f"%-{coin}cci-period_{t}"] = ta.CCI(informative, timeperiod=t)
             # Minus Directional Indicator / Movement
-            informative[f"%-{coin}minus_di-period_{t}"] = ta.MINUS_DI(informative, timeperiod=t)
-            informative[f"%-{coin}minus_dm-period_{t}"] = ta.MINUS_DM(informative, timeperiod=t)
+            # informative[f"%-{coin}minus_di-period_{t}"] = ta.MINUS_DI(informative, timeperiod=t)
+            # informative[f"%-{coin}minus_dm-period_{t}"] = ta.MINUS_DM(informative, timeperiod=t)
             # Plus Directional Indicator / Movement
-            informative[f"%-{coin}plus_di-period_{t}"] = ta.PLUS_DI(informative, timeperiod=t)
-            informative[f"%-{coin}plus_dm-period_{t}"] = ta.PLUS_DM(informative, timeperiod=t)
+            # informative[f"%-{coin}plus_di-period_{t}"] = ta.PLUS_DI(informative, timeperiod=t)
+            # informative[f"%-{coin}plus_dm-period_{t}"] = ta.PLUS_DM(informative, timeperiod=t)
             # MFI
-            informative[f"%-{coin}mfi-period_{t}"] = ta.MFI(informative, timeperiod=t)
+            # informative[f"%-{coin}mfi-period_{t}"] = ta.MFI(informative, timeperiod=t)
             # ADX
-            informative[f"%-{coin}adx-period_{t}"] = ta.ADX(informative, window=t)
+            # informative[f"%-{coin}adx-period_{t}"] = ta.ADX(informative, window=t)
             # TRIX - 1-day Rate-Of-Change (ROC) of a Triple Smooth EMA
-            informative[f"%-{coin}trix-period_{t}"] = ta.TRIX(informative, timeperiod=t)
+            #  informative[f"%-{coin}trix-period_{t}"] = ta.TRIX(informative, timeperiod=t)
             # WILLR - Williams' %R
-            informative[f"%-{coin}willr-period_{t}"] = ta.WILLR(informative, timeperiod=t)
+            # informative[f"%-{coin}willr-period_{t}"] = ta.WILLR(informative, timeperiod=t)
             # Kaufman's Adaptive Moving Average (KAMA)
-            informative[f"%-{coin}kama-period_{t}"] = ta.KAMA(informative, window=t)
+            # informative[f"%-{coin}kama-period_{t}"] = ta.KAMA(informative, window=t)
             # SMA
-            informative[f"%-{coin}sma-period_{t}"] = ta.SMA(informative, timeperiod=t)
+            # informative[f"%-{coin}sma-period_{t}"] = ta.SMA(informative, timeperiod=t)
             # EMA
-            informative[f"%-{coin}ema-period_{t}"] = ta.EMA(informative, timeperiod=t)
+            # informative[f"%-{coin}ema-period_{t}"] = ta.EMA(informative, timeperiod=t)
             # TEMA
             # informative[f"%-{coin}tema-period_{t}"] = ta.TEMA(informative, timeperiod=t)
             # ATR - Average True Range
             informative[f"%-{coin}atr-period_{t}"] = ta.ATR(informative, timeperiod=t)
             # Volume Weighted Average Price
-            vwap = qtpylib.vwap(informative)
+            # vwap = qtpylib.vwap(informative)
             # OBV - On Balance Volume
-            informative[f"%-{coin}obv"] = ta.OBV(informative)
+            # informative[f"%-{coin}obv"] = ta.OBV(informative)
             # Stoch
             # stoch = ta.STOCH(informative)
             # informative[f"%-{coin}slowd"] = stoch["slowd"]
@@ -139,13 +139,13 @@ Here be stonks
             # informative[f"%-{coin}fastd"] = stochf["fastd"]
             # informative[f"%-{coin}fastk"] = stochf["fastk"]
             # Stoch RSI
-            stoch_rsi = ta.STOCHRSI(informative)
-            informative[f"%-{coin}fastd"] = stoch_rsi["fastd"]
-            informative[f"%-{coin}fastk"] = stoch_rsi["fastk"]
+            # stoch_rsi = ta.STOCHRSI(informative)
+            # informative[f"%-{coin}fastd"] = stoch_rsi["fastd"]
+            # informative[f"%-{coin}fastk"] = stoch_rsi["fastk"]
             # Hilbert
-            hilbert = ta.HT_SINE(informative)
-            informative[f"%-{coin}htsine"] = hilbert["sine"]
-            informative[f"%-{coin}htleadsine"] = hilbert["leadsine"]
+            # hilbert = ta.HT_SINE(informative)
+            # informative[f"%-{coin}htsine"] = hilbert["sine"]
+            # informative[f"%-{coin}htleadsine"] = hilbert["leadsine"]
             # Bollinger bands
             # bollinger = qtpylib.bollinger_bands(
                 # qtpylib.typical_price(informative), window=t, stds=2.2
@@ -162,7 +162,7 @@ Here be stonks
                 # informative["close"] / informative[f"{coin}bb_lowerband-period_{t}"]
             # )
 
-            informative[f"%-{coin}roc-period_{t}"] = ta.ROC(informative, timeperiod=t)
+            # informative[f"%-{coin}roc-period_{t}"] = ta.ROC(informative, timeperiod=t)
 
             # informative[f"%-{coin}relative_volume-period_{t}"] = (
                 # informative["volume"] / informative["volume"].rolling(t).mean()
@@ -274,13 +274,17 @@ Here be stonks
             stake_amount = stake_amount * (1 + (count_of_buys * 0.25))
             if (
                     (last_candle['do_predict'] == 1)
+                    or (previous_candle['do_predict'] == 1)
                     and (last_candle['&-action'] == 2)
+                    or (previous_candle['&-action'] == 2)
                     and count_of_buys == 1
             ):
                 return stake_amount
             if (
                     (last_candle['do_predict'] == 1)
+                    or (previous_candle['do_predict'] == 1)
                     and (last_candle['&-action'] == 3)
+                    or (previous_candle['&-action'] == 3)
                     and count_of_buys == 2
             ):
                 return stake_amount
